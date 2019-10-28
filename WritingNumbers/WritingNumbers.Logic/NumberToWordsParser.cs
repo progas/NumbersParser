@@ -17,6 +17,11 @@ namespace WritingNumbers.Logic.IntegerParser
         /// </summary>
         private static string zero = "zero";
 
+        private static readonly int million = 1000000;
+        private static readonly int thousand = 1000;
+        private static readonly int hundred = 100;
+        private static readonly int ten = 10;
+        private static readonly int twenty = 20;
         /// <summary>
         /// Convert integer number to words
         /// </summary>
@@ -34,37 +39,37 @@ namespace WritingNumbers.Logic.IntegerParser
 
             string words = string.Empty;
 
-            if ((number / 1000000) > 0)
+            if ((number / million) > 0)
             {
-                words += NumberToWords(number / 1000000) + WrapWithSpaces(DefaultValues.Million);
-                number %= 1000000;
+                words += NumberToWords(number / million) + WrapWithSpaces(DefaultValues.Million);
+                number %= million;
             }
 
-            if ((number / 1000) > 0)
+            if ((number / thousand) > 0)
             {
-                words += NumberToWords(number / 1000) + WrapWithSpaces(DefaultValues.Thousand);
-                number %= 1000;
+                words += NumberToWords(number / thousand) + WrapWithSpaces(DefaultValues.Thousand);
+                number %= thousand;
             }
 
-            if ((number / 100) > 0)
+            if ((number / hundred) > 0)
             {
-                words += NumberToWords(number / 100) + WrapWithSpaces(DefaultValues.Hundred);
-                number %= 100;
+                words += NumberToWords(number / hundred) + WrapWithSpaces(DefaultValues.Hundred);
+                number %= hundred;
             }
 
             if (number > 0)
             {
-                if (number < 20)
+                if (number < twenty)
                 {
                     words += DictionaryProvider.GetOnesName(number); 
                 }
                 else
                 {
-                    words += DictionaryProvider.GetTenName(number / 10); 
+                    words += DictionaryProvider.GetTenName(number / ten); 
 
-                    if ((number % 10) > 0)
+                    if ((number % ten) > 0)
                     {
-                        words += "-" + DictionaryProvider.GetOnesName(number % 10); 
+                        words += "-" + DictionaryProvider.GetOnesName(number % ten); 
                     }
                 }
             }
